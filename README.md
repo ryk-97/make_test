@@ -7,4 +7,7 @@ xlsx形式で、問題の書かれたシートを作ってくれます。
 
 ### 国語
 
-**漢字，語句**：出文の漢字学習，[高校入試によく出る四字熟語](https://idiom-encyclopedia.com/middle-school-idiom/)，[高校入試によく出る慣用句](https://proverb-encyclopedia.com/middle-school-idiom/)，[高校入試によく出ることわざ](https://proverb-encyclopedia.com/middle-school-proverb)，[高校入試によく出る故事成語](https://proverb-encyclopedia.com/middle-school-koziseigo)，
+**漢字，語句**：出文の漢字学習，[高校入試によく出る四字熟語](https://idiom-encyclopedia.com/middle-school-idiom/)，[高校入試によく出る慣用句](https://proverb-encyclopedia.com/middle-school-idiom/)，[高校入試によく出ることわざ](https://proverb-encyclopedia.com/middle-school-proverb)，[高校入試によく出る故事成語](https://proverb-encyclopedia.com/middle-school-koziseigo)...
+**文法**：品詞の分類，敬語の使い方，文の成分　※geminiによる作問
+**作文**：作文問題　※geminiによる作問
+**漢文，古文**：表現など
