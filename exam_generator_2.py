@@ -2,6 +2,7 @@ import openpyxl as px
 from datetime import datetime
 import random
 import math
+from openpyxl.styles import Font
 import sympy as sp
 import re
 
@@ -119,94 +120,52 @@ def creat_math_problem(mode):
 now = datetime.now()
 formatted_now = now.strftime('%Y%m%d%H%M%S')
 
+font = Font(name='UDEV Gothic 35LG Regular', size=12)
+
 # Load the file and create a new sheet
 wb = px.load_workbook('exam.xlsx')
 ws = wb.create_sheet(title='EXAM' + str(formatted_now))
 
-for i in range(1, 101):
-    if i <= 25:
+for i in range(1, 91):
+    if i <= 30:
         expression, result = creat_math_problem('basic')
         target_cell = ws.cell(i, 1)
         target_cell.value = expression
-    elif i <= 50:
-        expression, result = creat_math_problem('equation')
-        target_cell = ws.cell(i-25, 3)
-        target_cell.value = expression
-    elif i <= 75:
-        expression, result = creat_math_problem('quadratic')
-        target_cell = ws.cell(i-50, 5)
-        target_cell.value = expression
-    else:
+        target_cell = ws.cell(i, 3)
+        target_cell.value = str(result)
+    elif i <= 45:
         expression, result = creat_math_problem('fraction')
-        target_cell = ws.cell(i-75, 7)
+        target_cell = ws.cell(i, 1)
         target_cell.value = expression
-
-    if i <= 8:
-        target_cell = ws.cell(26, i)
+        target_cell = ws.cell(i, 3)
         target_cell.value = str(result)
-    elif i <= 16:
-        target_cell = ws.cell(27, i-8)
-        target_cell.value = str(result)
-    elif i <= 24:
-        target_cell = ws.cell(28, i-16)
-        target_cell.value = str(result)
-    elif i <= 32:
-        target_cell = ws.cell(29, i-24)
-        target_cell.value = str(result)
-    elif i <= 40:
-        target_cell = ws.cell(30, i-32)
-        target_cell.value = str(result)
-    elif i <= 48:
-        target_cell = ws.cell(31, i-40)
-        target_cell.value = str(result)
-    elif i <= 56:
-        target_cell = ws.cell(32, i-48)
-        target_cell.value = str(result)
-    elif i <= 64:
-        target_cell = ws.cell(33, i-56)
-        target_cell.value = str(result)
-    elif i <= 72:
-        target_cell = ws.cell(34, i-64)
-        target_cell.value = str(result)
-    elif i <= 80:
-        target_cell = ws.cell(35, i-72)
-        target_cell.value = str(result)
-    elif i <= 88:
-        target_cell = ws.cell(36, i-80)
-        target_cell.value = str(result)
-    elif i <= 96:
-        target_cell = ws.cell(37, i-88)
-        target_cell.value = str(result)
-    elif i <= 104:
-        target_cell = ws.cell(38, i-96)
-        target_cell.value = str(result)
-
-ws.insert_rows(26)
-
-for i in range(1,101):
-    if i <= 25:
-        target_cell = ws.cell(i, 2)
-        target_cell.value = "_________________"
-        ws.column_dimensions["B"].width = 15
-    elif i <= 50:
-        target_cell = ws.cell(i-25, 4)
-        target_cell.value = "_________________"
-        ws.column_dimensions["D"].width = 15
     elif i <= 75:
-        target_cell = ws.cell(i-50, 6)
-        target_cell.value = "_________________"
-        ws.column_dimensions["F"].width = 15
+        expression, result = creat_math_problem('equation')
+        target_cell = ws.cell(i-45, 2)
+        target_cell.value = expression
+        target_cell = ws.cell(i-45, 4)
+        target_cell.value = str(result)
     else:
-        target_cell = ws.cell(i-75, 8)
-        target_cell.value = "_________________"
-        ws.column_dimensions["H"].width = 15
+        expression, result = creat_math_problem('quadratic')
+        target_cell = ws.cell(i-45, 2)
+        target_cell.value = expression
+        target_cell = ws.cell(i-45, 4)
+        target_cell.value = str(result)
+
+
 
 ws.insert_rows(1)
 ws.insert_rows(1)
 
-ws.merge_cells('A1:H1')
+ws.merge_cells('A1:D1')
 ws['A1'] = '数学基礎計算'
-ws.merge_cells('A2:H2')
-ws['A2'] = f'名前:雪丸里空 日付:{now.strftime("%Y年%m月%d日")} タイム:______分______秒 点数:______点'
+ws.merge_cells('A2:D2')
+ws['A2'] = f'{now.strftime("%Y年%m月%d日")} タイム:______分______秒 点数:______点'
+
+# Set column widths
+ws.column_dimensions['A'].width = 15
+ws.column_dimensions['B'].width = 15
+ws.column_dimensions['C'].width = 15
+ws.column_dimensions['D'].width = 15
 
 wb.save('exam.xlsx')
